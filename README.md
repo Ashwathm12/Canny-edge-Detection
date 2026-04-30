@@ -1,4 +1,6 @@
-# edge-detection-opencv
+# Workshop 3 Canny-edge-detection
+## Name: Ashwath M
+## Register number: 212223230023
 
 ## Aim
 
@@ -47,34 +49,63 @@ Display all edge-detected images for comparison.
 
 ---
 
-## Developed By
+## Program:
+```
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
 
-- **Name:** ____________________________  
-- **Register No:** ______________________  
+img=cv2.imread('dog.jpg')
+img1=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+plt.imshow(img1)
+
+img_gray=cv2.imread('dog.jpg',0)
+plt.imshow(img_gray,cmap='gray')
+plt.show()
+
+np.max(img_gray)/2
+
+edges= cv2.Canny(img_gray, threshold1=128, threshold2=128)
+plt.imshow(edges,cmap='gray')
+
+blurred_img=cv2.blur(img1,ksize=(3,3))
+plt.imshow(blurred_img)
+
+medium=np.median(img1)
+medium
+
+low=int(max(0,0.7*medium))
+high=int(max(255,1/3*medium))
+
+canny_edges_blur=cv2.Canny(blurred_img,threshold1=low,threshold2=high)
+plt.imshow(canny_edges_blur)
+
+
+```
+
 
 ---
 
 ## Output
 
 ###  Sobel Edge Detector
-- Detects edges in horizontal and vertical directions  
-- Produces gradient-based edge map  
+<img width="531" height="480" alt="image" src="https://github.com/user-attachments/assets/2ad7d9ea-fca7-48cd-b2f1-1fd8f2d3add3" />
+
 
 ###  Prewitt Edge Detector
-- Similar to Sobel but simpler kernel  
-- Detects directional edges  
+<img width="500" height="482" alt="image" src="https://github.com/user-attachments/assets/5e7b9f1f-b101-4293-a448-2e9f58d232fe" />
+ 
 
 ###  Roberts Edge Detector
-- Detects edges using diagonal gradients  
-- Sensitive to noise  
+<img width="504" height="473" alt="image" src="https://github.com/user-attachments/assets/19f6c673-a2be-4f92-83be-c2a2340beba2" />
+ 
 
 ###  Laplacian Edge Detector
-- Detects edges using second-order derivatives  
-- Highlights rapid intensity changes  
+<img width="523" height="473" alt="image" src="https://github.com/user-attachments/assets/37d89fac-b24c-4fbb-a5f6-af18ed84d501" />
+ 
 
 ###  Canny Edge Detector
-- Multi-stage edge detection  
-- Produces clean and thin edges  
+<img width="518" height="470" alt="image" src="https://github.com/user-attachments/assets/ca4d55f2-f880-4472-b5c5-2ab0b5db8c2b" />
 
 ---
 
